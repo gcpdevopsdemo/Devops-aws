@@ -1,0 +1,77 @@
+using System;
+
+namespace SimpleCalculator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Print a welcome message
+            Console.WriteLine("Welcome to the Simple Calculator!");
+
+            // Ask for the first number
+            Console.Write("Enter the first number: ");
+            double num1 = Convert.ToDouble(Console.ReadLine());
+
+            // Ask for the second number
+            Console.Write("Enter the second number: ");
+            double num2 = Convert.ToDouble(Console.ReadLine());
+
+            // Ask for the operation
+            Console.Write("Choose an operation (+, -, *, /): ");
+            string operation = Console.ReadLine();
+
+            // Perform the calculation based on the operation
+            double result = 0;
+            bool validOperation = true;
+
+            switch (operation)
+            {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 != 0)
+                    {
+                        result = num1 / num2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Division by zero is not allowed.");
+                        validOperation = false;
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid operation.");
+                    validOperation = false;
+                    break;
+            }
+
+            // Display the result
+            if (validOperation)
+            {
+                Console.WriteLine($"The result of {num1} {operation} {num2} is: {result}");
+            }
+
+            // Ask if the user wants to perform another calculation
+            Console.Write("Do you want to perform another calculation (yes/no)? ");
+            string response = Console.ReadLine().ToLower();
+
+            if (response == "yes")
+            {
+                // Recursively call the Main method to start again
+                Main(args);
+            }
+            else
+            {
+                Console.WriteLine("Thank you for using the Simple Calculator. Goodbye!");
+            }
+        }
+    }
+}
